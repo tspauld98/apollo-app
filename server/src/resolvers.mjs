@@ -40,13 +40,12 @@ export const resolvers = {
     deleteBook(_, args) {
       return fetch('http://localhost:5050/books/'
         + encodeURIComponent(args.id))
-        .then(res => {
-          const deletedBook = res.json();
-
+        .then(res => res.json())
+        .then(book => {
           return fetch('http://localhost:5050/books/'
             + encodeURIComponent(args.id), {
               method: 'DELETE',
-            }).then(() => {return deletedBook;});
+            }).then(() => book);
         });
     },
   },
