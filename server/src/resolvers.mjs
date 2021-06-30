@@ -17,10 +17,21 @@ export const resolvers = {
       return fetch('http://localhost:5050/authors/'
         + encodeURIComponent(args.id)).then(res => res.json());
     },
+    books() {
+      return fetch('http://localhost:5050/books')
+        .then(res => res.json());
+    }
   },
   Author: {
     fullName: (author) => {
       return author.firstName + " " + author.lastName;
     }
   },
+  Book: {
+    author: (book) => {
+      return fetch('http://localhost:5050/authors/'
+      + encodeURIComponent(book.authorId))
+      .then(res => res.json());
+    }
+  }
 };

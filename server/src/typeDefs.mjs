@@ -4,6 +4,7 @@ export const typeDefs = gql`
   type Query {
     message: String
     authors: [Author]
+    books: [Book]
     author(id: ID): Author
   }
 
@@ -13,5 +14,16 @@ export const typeDefs = gql`
     lastName: String
     fullName: String
     phoneNumber: String
+  }
+
+  type Book {
+    id: ID
+    isbn: String
+    title: String
+    authorId: ID
+    category: String
+    price: Float
+    quantity: Int
+    author: Author
   }
 `;
