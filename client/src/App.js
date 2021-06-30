@@ -8,6 +8,14 @@ const APP_QUERY = gql`
       fullName
       phoneNumber
     }
+    books {
+      id
+      title
+      category
+      author {
+        fullName
+      }
+    }
   }
 `;
 
@@ -23,6 +31,10 @@ function App() {
 
         <ul>
           {data.authors.map(a => <li key={a.id}> {a.fullName} - {a.phoneNumber} </li>)}
+        </ul>
+
+        <ul>
+          {data.books.map(b => <li key={b.id}> {b.title} ({b.category}) - {b.author.fullName} </li>)}
         </ul>
     </div>
   );
