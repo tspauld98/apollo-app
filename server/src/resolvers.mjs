@@ -25,13 +25,18 @@ export const resolvers = {
   Author: {
     fullName: (author) => {
       return author.firstName + " " + author.lastName;
+    },
+    books: (author) => {
+      return fetch('http://localhost:5050/books?authorId='
+        + encodeURIComponent(author.id))
+        .then(res => res.json());
     }
   },
   Book: {
     author: (book) => {
       return fetch('http://localhost:5050/authors/'
-      + encodeURIComponent(book.authorId))
-      .then(res => res.json());
+        + encodeURIComponent(book.authorId))
+        .then(res => res.json());
     }
   }
 };

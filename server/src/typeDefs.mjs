@@ -14,6 +14,7 @@ export const typeDefs = gql`
     lastName: String
     fullName: String
     phoneNumber: String
+    books: [Book]
   }
 
   type Book {
