@@ -2,7 +2,12 @@ import { useQuery, gql } from "@apollo/client";
 
 const APP_QUERY = gql`
   query App {
-      message
+    message
+    authors {
+      id
+      fullName
+      phoneNumber
+    }
   }
 `;
 
@@ -15,6 +20,10 @@ function App() {
   return (
     <div>
         {data.message}
+
+        <ul>
+          {data.authors.map(a => <li key={a.id}> {a.fullName} - {a.phoneNumber} </li>)}
+        </ul>
     </div>
   );
 }
